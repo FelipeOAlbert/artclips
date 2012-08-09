@@ -255,4 +255,10 @@ function js($asset_name, $module_name = NULL)
 	return include_once_pack('<script type="text/javascript" src="' . $url . '"></script>', $url);
 }
 
+function printr($array = ''){
+	print '<pre>';
+	print_r($array);
+	die('fim array');
+}
+
 ?>

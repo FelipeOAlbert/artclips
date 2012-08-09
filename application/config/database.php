@@ -46,6 +46,11 @@ if("dev.interview.com.br"==$_SERVER['HTTP_HOST']){
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '123qwe';
 	$db['default']['database'] = 'interview_novo';
+}elseif("local.artclips.com.br"==$_SERVER['HTTP_HOST']){
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'root';
+	$db['default']['password'] = '';
+	$db['default']['database'] = 'artclips';
 }else{
 	$db['default']['hostname'] = 'mysql.xpgpro.com.br';
 	$db['default']['username'] = 'rsiroma';

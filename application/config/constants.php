@@ -42,8 +42,8 @@ if("dev.interview.com.br"==$_SERVER['HTTP_HOST']){
 	define('DB_DEFAULT', "interview_novo");
 
 }else{
-	define('DB_ENDERECO', "rsiroma");
-	define('DB_DEFAULT', "rsiroma");
+	define('DB_ENDERECO', "artclips");
+	define('DB_DEFAULT', "artclips");
 }
 
 define('LICENSE_TYPE_TIME' , 1);

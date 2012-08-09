@@ -39,7 +39,7 @@
 					<a href="#" title="Titulo do link Menu">Eventos</a>
 				</li>
 				<li>
-					<a href="#" title="Titulo do link Menu">Relatórios</a>
+					<a href="index.php/relatorio/index/" title="Titulo do link Menu">Relatórios</a>
 				</li>
 				<li>
 					<a href="#" title="Titulo do link Menu">Mapas</a>
