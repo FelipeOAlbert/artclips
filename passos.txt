@@ -1,0 +1,11 @@
+
+- Evento
+  + Nome do evento
+  + Responsável
+	| email
+	| telefone
+  + Finalidade da Pesquisa
+  + Público ALvo
+  - Tipo de Pesquisa
+  + Tamanho da Amostra
+  

@@ -1,0 +1,433 @@
+/* ------------- RESET ------------------- */
+
+	* {margin: 0; padding: 0; outline: none; background-color:transparent;}
+	html, body {height: 100%;}
+	body {
+		font-family: Helvetica, Arial, sans-serif; font-size: 62.5%; color: #003; background-color: #f4f4f4; overflow: auto;
+		background-color: #FFF;
+	}
+	
+	ul	{list-style: square inside;}
+	ol	{list-style: decimal inside;}
+	a	{outline: none; text-decoration: none;}
+	a img	{border: none;}
+	img	{vertical-align: middle;}
+	table	{border-collapse: collapse;}
+	
+	/* typo reset */
+	h1, h2, h3, h4, h5, h6, p, strong {
+		color: #615d5c;
+	}
+	
+	h1 {font-size: 2.5em;}
+	h2 {margin: 4px;}
+	h4 {margin: 20px;}
+	p, a, strong, table {font-size: 1.4em;}
+	a {color: #615d5c;}
+	a:hover {text-decoration: underline;}
+
+/* ---------------------------------------- */
+
+
+/* ------------- UTILITY ------------------- */
+
+	.floatLeft {float: left;}
+	.floatRight {float: right;}
+	.clear {clear: both;}
+	.fim {margin-bottom: 100px;}
+	
+	.button {
+		padding: 6px 10px;
+		color: #fff;
+		font-size: 1em;
+		background: #615d5c;
+		text-transform: uppercase;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.button:hover {
+		text-decoration: none;
+		background: #0670b8;
+	}
+
+	
+	input[type="button"], input[type="submit"] {
+		min-width: 100px;
+		height: 26px;
+		padding: 6px 10px;
+		color: #fff;
+		font-size: 1em;
+		text-weigth:
+		background: #615d5c;
+		text-decoration: none;
+		border-style: solid;
+		border-width: 1px;
+		border-color:#71583a;
+		cursor: pointer;
+		padding: 0px;
+		text-shadow: -1px -1px #333;
+		background-image:url(../images/bg_button.png);
+		-webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;
+	}
+	input[type="button"]:hover, input[type="submit"]:hover {
+		text-decoration: none;
+		background-position: 0px -26px;
+	}
+	input[type="button"]:active, input[type="submit"]:active {
+		text-decoration: none;
+		background-position: 0px -52px;
+	}
+
+
+.logout{
+	color: #FFFFFF;
+    float: right;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-top: 49px;
+}
+/* ---------------------------------------- */
+
+
+/* Main */
+
+.all{
+	width: 867px;
+	margin: 0px auto;
+}
+
+.corpo{
+	border-left: 1px solid #dcdcdc;
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	border-radius: 0 0 10px 8px;
+	padding-top: 22px;
+	padding-bottom: 22px;
+}
+
+.topo{
+	width: 100%;
+	background-image: url(../images/topo.jpeg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-color: transparent;
+	height: 101px;
+}
+
+
+.img-separador{
+	margin-top:7px;
+}
+
+.conteudo{
+	border: 0px solid black;
+	width: 95%;
+	margin: 0px auto;
+}
+
+
+
+.menu{
+	background-color: white;
+}
+
+#menuhor {
+	border:none;
+	position: relative;
+}
+#menuhor li {
+	list-style: none; 
+	margin-right: 10px;
+	display: inline;
+}
+#menuhor li a {
+	margin:0;
+	border: 1px solid #d5d7d6;
+	background: #dfe4ea;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 6px;
+	color: #454b5b;
+}
+#menuhor li a:link {
+	color: #454b5b;
+}
+#menuhor li a:visited {
+	color: #454b5b;
+}
+#menuhor li a:hover {
+	color: #454b5b; 
+	border-color: black;
+}
+
+
+/*Mensagems*/
+.fundo {
+	display: none;
+	background-color: #FFF;
+	border:1px solid #cecece;  
+	opacity: 0.70;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.70;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/  
+	z-index: 1;
+	top:0px;
+	left:0px;
+	width:100%;
+	height: 100%;
+}
+.loading_content {
+	display: none;
+	z-index:100;
+	text-align:center;
+	width:400px;
+	padding:40px;
+	background-color:#fff;
+	border:1px solid #ccc;
+	/*
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-left: -200px;*/
+}
+
+
+
+form {
+	font-size: 1.3em;
+	text-align: left;
+}	
+	form > div {
+		display: inline-block;
+	}
+	form input[type=text], form input[type=password] {
+		border: 1px solid #999;
+		background-color: #fff;
+		font-weight: bold;
+		width: 280px;
+		height: 20px;
+		-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
+	}
+	form select {
+		border: 1px solid #999;
+		background-color: #fff;
+		background-image:url(../images/select.png);
+		font-weight: bold;
+		-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
+	}
+	form input[type=text].erro, input[type=password].erro, select.erro {
+		border: 1px solid #f66;
+		background-color: #fdd;
+	}
+	form textarea {
+		border: 1px solid #999;
+		background-color: #fff;
+		font-weight: bold;
+		width: 280px;
+		-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
+	}
+	form textarea.erro {
+		border: 1px solid #f66;
+		background-color: #fdd;
+	}
+	form label{
+		display: inline-block;
+		width: 70px;
+		text-align: right;
+		vertical-align: top;
+		font-weight: bold;
+		line-height: 23px;
+	}
+		form .campos div {
+			padding-bottom: 3px;
+		}
+/* ------ */
+
+/* OUTRO FORMS */
+
+	form img.loading {
+		margin-left:170px; /* Ajax UFs, Cidades, Bairros */
+	}
+	
+	/* CADASTRO DO USUÃ�RIO */
+	form.cadastro {
+		
+	}
+		form.cadastro > div, form.editar_email > div, form.editar_senha > div {
+			display: block !important;
+		}
+		form.cadastro label, form.editar_email label, form.editar_senha label {
+			width: 200px;
+		}
+		form.cadastro input, form.cadastro select,
+		form.editar_email input, form.editar_email select,
+		form.editar_senha input, form.editar_senha select {
+			margin: 2px 5px;
+		}
+		form.cadastro input[disabled=disabled], form.cadastro select[disabled=disabled],
+		form.editar_email input[disabled=disabled], form.editar_email select[disabled=disabled],
+		form.editar_senha input[disabled=disabled], form.editar_senha select[disabled=disabled] {
+			background-color: #ccc;
+		}
+		form.cadastro input.cep, form.cadastro input.data {
+			width:105px;
+			text-align: center;
+		}
+		form.cadastro input[type=submit ], form.editar_email input[type=submit ], form.editar_senha input[type=submit ] {
+			margin: 30px 250px;
+		}
+		form.cadastro input.fone {
+			width: 75px;
+		}
+		form.cadastro input.ddd {
+			width: 25px;
+		}
+
+	/* EVENTOS */
+	form.novo_evento {
+	
+	}
+		form.novo_evento > div, form.editar_evento > div {
+			display: block !important;
+		}
+		form.novo_evento label, form.editar_evento label {
+			width: 150px;
+			margin: 2px 5px;
+		}
+		form.novo_evento input[type=text], form.novo_evento select, form.editar_evento input[type=text], form.editar_evento select {
+			margin: 2px 5px;
+		}
+		form.novo_evento input#cep, form.editar_evento input#cep {
+			width: 80px;
+		}
+		form.novo_evento input#numero, form.editar_evento input#numero {
+			width: 70px;
+		}
+		form.novo_evento #criar, form.editar_evento #salvar {
+			margin: 20px 0px 30px 200px;
+		}
+			.ver_novo_evento {
+				margin-bottom: 30px;
+			}
+	
+	/* QUESTIONÃ�RIOS */
+	form.novo_questionario, form.editar_questionario {
+		height: auto;
+		font-size: 1.0em;
+	}
+		form.novo_questionario div label, form.editar_questionario div label {
+			width: 200px;
+			margin-left: 5px !important;
+		}
+		
+		form.novo_questionario > div, form.editar_questionario > div {
+			margin: 20px;
+		}
+	
+	/* QUESTÃ•ES */
+	form.nova_questao, form.editar_questao {
+		height: auto;
+		font-size: 1.0em;
+	}
+		form.nova_questao div label, form.editar_questao div label {
+			width: 150px;
+		}
+		
+		form.nova_questao > div, form.editar_questao > div {
+			margin: 20px 0px;
+		}
+		
+		form.nova_questao input.criar, form.editar_questao input.salvar {
+			margin: 0px 20px;
+		}
+		
+		form.nova_questao #descricao, form.editar_questao #descricao {
+			width: 400px;
+			height: 45px;
+		}
+	
+	/* REPOSTAS */
+	form.nova_resposta, form.editar_resposta {
+		height: auto;
+		font-size: 1.0em;
+	}
+		form.nova_resposta div label, form.editar_resposta div label {
+			width: 140px;
+		}
+		
+		form.nova_resposta > div, form.editar_resposta > div {
+			margin: 20px 0px;
+		}
+		
+		form.nova_resposta input.criar, form.editar_resposta input.salvar {
+			margin: 0px 20px;
+		}
+		
+		form.nova_resposta input.peso, form.editar_resposta input.peso {
+			width: 50px;
+		}
+		
+		form.nova_resposta .descricao, form.editar_resposta .descricao {
+			width: 400px;
+			height: 45px;
+		}
+	
+	/* LIGHT BOX DE SELECIONAR EVENTO DA DUPLICA QUESTIONÃ�RIO */
+	.light_box_evento_duplicar_questionario {
+		border: 3px outset #ccc;
+	}
+	.form_evento_duplicar_questionario {
+		background-color: #fff;
+		padding: 0px;
+		margin: 0px;
+		font-size: 1.0em;
+	}
+		.form_evento_duplicar_questionario > div {
+			text-align: center;
+			display: block !important;
+		}
+		
+		.form_evento_duplicar_questionario select {
+			display: inline-block;
+			width: 200px;
+			margin: 20px 0px 15px 0px;
+		}
+	
+	/* LIGHT BOX LISTAR IMAGENS DA QUESTÃƒO */
+	.light_box_listar_imagens {
+		border: 3px outset #ccc;
+	}
+	.nova_questao_imagem {
+		background-color: #fff;
+		padding: 0px;
+		margin: 0px 0px 10px 0px;
+		width: 400px;
+		font-size: 1.0em;
+		text-align: center;
+	}
+		.nova_questao_imagem .carregar, .nova_questao_imagem .cancelar {
+			margin: 10px auto;
+		}
+		.nova_questao_imagem > div {
+			text-align: center;
+			display: block !important;
+		}
+	
+	/* LICENÃ‡A */
+	.nova_ativacao {
+		margin: 20px 0px 50px 30px;
+	}
+		.nova_ativacao select {
+			width: 250px;
+		}
+		.nova_ativacao label {
+			width: 100px;
+		}
+		.nova_ativacao input[type=button] {
+			display: block;
+			margin: 10px 0px 0px 300px;
+		}
+	
+/* ------ */
