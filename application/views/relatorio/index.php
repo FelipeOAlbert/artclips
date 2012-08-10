@@ -3,18 +3,19 @@
 ?>
 
 <div>
-    <h1>Relat&oacuterios - <?=$event[0]['event_name']?></h1>
+    <h1>Relat&oacuterios - <?=$event[0]['name']?></h1>
     
     <div id="abas">
         <ul>
-            <li><a href="#informacoes-1">Visitantes</a></li>
-            <li><a href="#informacoes-2">Contato</a></li>
-            <li><a href="#informacoes-3">Sobre</a></li>
+            <li><a href="#informacoes-visitantes">Visitantes</a></li>
+            <?if($questionnaire){ foreach($questionnaire as $k => $v){ /*printr($v['name']);*/?>
+            <li><a href="#informacoes-<?=$k?>"><?=$v['name']?></a></li>
+            <?}}?>
         </ul>
         
-        <div id="informacoes-1">
+        <div id="informacoes-visitantes">
             
-            <?if(isset($users)){?>
+            <?if($users){?>
             
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
@@ -152,13 +153,29 @@
             <?}?>
         </div>
         
-        <div id="informacoes-2">
-            <p>Esta é a segunda aba!</p>
+        <?if($questionnaire){ foreach($questionnaire as $k => $v){ ?>
+        <div id="informacoes-<?=$k?>">
+            <!--<p>Esta é a segunda aba!</p>-->
+            <? foreach ($questionnaire[$k]['question'] as $qk => $qv){?>
+            
+            <p>Questão:</p>
+            <strong><p><?=$qv['description']?></p></strong>
+            <p>Respostas:</p>
+            
+            <ul>
+            <? foreach ($questionnaire[$k]['question'][$qk]['answer'] as $qak => $qav){?>
+            
+            <li><?=$qav['description']?></li>
+            
+            <?}?>
+            </ul>
+            <br>
+            
+            <!--  lembrar fazer o grafico para cada questão!!          -->
+            
+            <?}?>
         </div>
-        
-        <div id="informacoes-3">
-            <p>Esta é a terceira aba!</p>
-        </div>
+        <?}}?>
     </div>
     
     

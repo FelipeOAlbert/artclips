@@ -103,6 +103,65 @@ class Report_model extends CI_Model {
         return false;
     }
     
+	public final function getEventById($id = 0)
+	{
+		$query = $this->db->get_where('event', array('id_event' => $id));
+		
+		if($query->num_rows > 0){
+			return $query->result_array();
+		}
+		
+		return false;
+	}
+	
+	public final function getQuestionnaireByEventId($id = 0)
+	{
+		$query = $this->db->get_where('questionnaire', array('id_event' => $id));
+		
+		if($query->num_rows > 0){
+			return $query->result_array();
+		}
+		
+		return false;
+	}
+	
+	public final function getQuestionByQuestionnaire($id = 0)
+	{
+		$query = $this->db->get_where('question', array('id_questionnaire' => $id));
+		
+		if($query->num_rows > 0){
+			return $query->result_array();
+		}
+		
+		return false;
+	}
+	
+	public final function getAnswerByQuestion($id = 0)
+	{
+		$query = $this->db->get_where('answer', array('id_question' => $id));
+		
+		if($query->num_rows > 0){
+			return $query->result_array();
+		}
+		
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public final function get_data_by_event($id_event = 0)
 	{
 		

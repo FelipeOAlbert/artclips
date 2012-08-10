@@ -22,7 +22,26 @@ class Relatorio extends CI_Controller
 		$data['users'] = $this->report->get_users();
 		
 		//id do evento que provavelmente vai vim por sessão
-		$data['event'] = $this->report->get_data_by_event(2);
+		//dados do evento
+		$data['event'] = $this->report->getEventById(4);
+		
+		//dados dos questionarios desse evento
+		$data['questionnaire'] = $this->report->getQuestionnaireByEventId(4);
+		
+		//printr($data);
+		
+		if($data['questionnaire']){
+			foreach($data['questionnaire'] as $k => $v){
+				
+				//pegando as questoes do questionario
+				$data['questionnaire'][$k]['question'] = $this->report->getQuestionByQuestionnaire($v['id_questionnaire']);
+				
+				//pegando as respostas das questoes
+				foreach($data['questionnaire'][$k]['question'] as $qqk => $qqv){
+					$data['questionnaire'][$k]['question'][$qqk]['answer'] = $this->report->getAnswerByQuestion($qqv['id_question']);
+				}
+			}
+		}
 		
 		//printr($data);
 		
