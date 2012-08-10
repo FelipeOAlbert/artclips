@@ -53,12 +53,12 @@ class Report_model extends CI_Model {
                 
                 if(isset($age)){
                     
-                    if($age >= 26 && $age <= 32){
+					if($age >= 18 && $age <= 25){
                         $age_18_25++;
                     }
-                    
-                    if($age >= 18 && $age <= 25){
-                        $age_26_32++;
+					
+                    if($age >= 26 && $age <= 32){
+						$age_26_32++;
                     }
                     
                     if($age >= 33 && $age <= 40){
