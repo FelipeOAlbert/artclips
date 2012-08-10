@@ -151,7 +151,7 @@ class Report_model extends CI_Model {
 		//montando dados das questões
 		if($query->num_rows > 0){
 			
-			printr($query->result_array());
+			//printr($query->result_array());
 			
 			foreach($query->result_array() as $k=>$v){
 				
@@ -162,24 +162,26 @@ class Report_model extends CI_Model {
 				$data[$k]['grafico'] 				= $v['grafico'];
 				$data[$k]['description'] 			= $v['description'];
 				
-				//pegando as respostas dos users
-				
-				$this->db->select('answer.description');
-				$this->db->from('answer_respondent');
-				$this->db->join('answer', 'answer.id_answer = answer_respondent.answer_id');
-				$this->db->where(array('id_question'=> $v['id_question']));
-				
-				$query = $this->db->get();
-				echo $this->db->last_query();die();
+				////pegando as respostas dos users
+				//
+				//$this->db->select('answer.description');
+				//$this->db->from('answer_respondent');
+				//$this->db->join('answer', 'answer.id_answer = answer_respondent.answer_id');
+				//$this->db->where(array('id_question'=> $v['id_question']));
+				//
+				//$query = $this->db->get();
+				//echo $this->db->last_query();die();
 				
 				
 			}
 			
-			printr($data);
+			//printr($data);
+			
+			return $data;
 			
 		}
 		
-		
+		return false;
 		
 		
 		

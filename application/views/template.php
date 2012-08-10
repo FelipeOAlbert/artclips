@@ -10,6 +10,11 @@
 	<?= css('jquery_extends/jquery.extends.css');?>
 	<?= css('arrowsandboxes.css');?>
 	
+	<?= css('css3-progress-bar.css');?>
+	<!--[if lt IE 9]>
+	<?= css('css3-progress-bar-ie.css');?>
+	<![endif]-->
+	
 	<!-- JavaScript -->
 	<?= js('jquery-1.6.2.min.js');?>
 	<?= js('jquery-ui-1.8.16.custom.min.js');?>
@@ -25,6 +30,16 @@
 	<?= js('arrowsandboxes.js');?>
 	<?= js('tiny_mce/jquery.tinymce.js');?>
 
+	<!-- google charts	-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	
+	<!-- abas relatorio	-->
+	<script>
+        $(function() {
+            $( "#abas" ).tabs();
+        });
+    </script>
+	
 </head>
 <body>
 <div class='all'>
