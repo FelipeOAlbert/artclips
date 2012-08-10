@@ -21,9 +21,8 @@ class Relatorio extends CI_Controller
 		
 		$data['users'] = $this->report->get_users();
 		
-		
 		//id do evento que provavelmente vai vim por sessão
-		////$id_evento = ;
+		$data['nao_sei'] = $this->report->get_data_by_event(2);
 		
 		printr($data);
 		

@@ -13,16 +13,16 @@ class Report_model extends CI_Model {
     public final function get_users()
     {
         //Setando....
-        $man    = 0;
-        $woman  = 0;
-        $data   = array();
-        $age_18_25 = 0;
-        $age_26_32 = 0;
-        $age_33_40 = 0;
-        $age_41_50 = 0;
-        $age_51_plus = 0;
+        $man    		= 0;
+        $woman  		= 0;
+        $data   		= array();
+        $age 			= '';
+		$age_18_25 		= 0;
+        $age_26_32 		= 0;
+        $age_33_40 		= 0;
+        $age_41_50 		= 0;
+        $age_51_plus 	= 0;        
         
-        $age = '';
         
         $this->db->select('user.name, user_detail.gender, user_detail.birth_date, user_profile.id_profile');
         $this->db->from('user');
@@ -30,8 +30,6 @@ class Report_model extends CI_Model {
         $this->db->join('user_profile', 'user_profile.id_user = user.id_user');
         $this->db->where(array('user_profile.id_profile' => 2));
         $query = $this->db->get();
-        
-        //echo $this->db->last_query();
         
         if($query->num_rows > 0){
             
@@ -105,4 +103,89 @@ class Report_model extends CI_Model {
         return false;
     }
     
+	public final function get_data_by_event($id_event = 0)
+	{
+		
+		$data = array();
+		
+		#creio que esteja errado..... ao invez de buscar na tabela evento.... deve começar pela tabela de respostas
+		
+		$where = array(
+						'event.active' 			=> 1,
+						'questionnaire.active' 	=> 1,
+						'question.active' 		=> 1,
+						'event.id_event' 		=> $id_event
+					   );
+		
+		$this->db->select('
+							event.id_event,
+							event.id_user,
+							event.name AS event_name,
+							questionnaire.id_questionnaire,
+							questionnaire.name AS questionnaire_name,
+							questionnaire.available,
+							question.id_question,
+							question.id_type,
+							question.id_transicao,
+							question.id_questao_pai,
+							question.id_category,
+							question.palavra_chave,
+							question.img_questao,
+							question.grafico,
+							question.description
+						  ');
+		$this->db->from('event');
+		
+		$this->db->join('questionnaire', 'questionnaire.id_event = event.id_event');
+		$this->db->join('question', 'question.id_questionnaire = questionnaire.id_questionnaire');
+		
+		$this->db->where($where);
+		
+		$query = $this->db->get();
+		
+		//echo $this->db->last_query();//die();
+		
+		//montar um array onde haverá apenas os dados das questões (montar as páginas de cada questão) e o nome do evento,
+		//depois montar um array com as respostas dessas questões que irão montar os gráficos
+		
+		//montando dados das questões
+		if($query->num_rows > 0){
+			
+			printr($query->result_array());
+			
+			foreach($query->result_array() as $k=>$v){
+				
+				$data[$k]['event_name'] 			= $v['event_name'];
+				$data[$k]['questionnaire_name'] 	= $v['questionnaire_name'];
+				$data[$k]['question_name'] 			= $v['palavra_chave'];
+				$data[$k]['img_questao'] 			= $v['img_questao'];
+				$data[$k]['grafico'] 				= $v['grafico'];
+				$data[$k]['description'] 			= $v['description'];
+				
+				//pegando as respostas dos users
+				
+				$this->db->select('answer.description');
+				$this->db->from('answer_respondent');
+				$this->db->join('answer', 'answer.id_answer = answer_respondent.answer_id');
+				$this->db->where(array('id_question'=> $v['id_question']));
+				
+				$query = $this->db->get();
+				echo $this->db->last_query();die();
+				
+				
+			}
+			
+			printr($data);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		//vai ter que ter o nome do evento
+		// vai ter que ter o nome do gráfico (palavra chave)
+	}
 }
