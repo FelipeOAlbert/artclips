@@ -147,7 +147,16 @@ class Report_model extends CI_Model {
 		return false;
 	}
 	
-	
+	public final function getAnswerRespondentByAnswer($id = 0)
+	{
+		$query = $this->db->get_where('answer_respondent', array('answer_id' => $id));
+		
+		if($query->num_rows > 0){
+			return $query->num_rows;
+		}
+		
+		return 0;
+	}
 	
 	
 	

@@ -39,6 +39,10 @@ class Relatorio extends CI_Controller
 				//pegando as respostas das questoes
 				foreach($data['questionnaire'][$k]['question'] as $qqk => $qqv){
 					$data['questionnaire'][$k]['question'][$qqk]['answer'] = $this->report->getAnswerByQuestion($qqv['id_question']);
+					
+					foreach($data['questionnaire'][$k]['question'][$qqk]['answer'] as $qqvak => $qqvav){
+						$data['questionnaire'][$k]['question'][$qqk]['answer'][$qqvak]['quant'] = $this->report->getAnswerRespondentByAnswer($qqvav['id_answer']);
+					}
 				}
 			}
 		}

@@ -1,5 +1,8 @@
 <? //printr($users);
 //echo current_url();
+
+//$data_chart = array();
+
 ?>
 
 <div>
@@ -8,14 +11,14 @@
     <div id="abas">
         <ul>
             <li><a href="#informacoes-visitantes">Visitantes</a></li>
-            <?if($questionnaire){ foreach($questionnaire as $k => $v){ /*printr($v['name']);*/?>
+            <?if($questionnaire){ foreach($questionnaire as $k => $v){ ?>
             <li><a href="#informacoes-<?=$k?>"><?=$v['name']?></a></li>
             <?}}?>
         </ul>
         
         <div id="informacoes-visitantes">
             
-            <?if($users){?>
+            <? if($users){ ?>
             
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
@@ -153,30 +156,89 @@
             <?}?>
         </div>
         
-        <?if($questionnaire){ foreach($questionnaire as $k => $v){ ?>
+        <?
+            if($questionnaire){
+                foreach($questionnaire as $k => $v){
+        ?>
         <div id="informacoes-<?=$k?>">
             <!--<p>Esta é a segunda aba!</p>-->
-            <? foreach ($questionnaire[$k]['question'] as $qk => $qv){?>
+            <?
+                foreach ($questionnaire[$k]['question'] as $qk => $qv){
+                    $data_chart = array();
+            ?>
             
             <p>Questão:</p>
             <strong><p><?=$qv['description']?></p></strong>
             <p>Respostas:</p>
             
             <ul>
-            <? foreach ($questionnaire[$k]['question'][$qk]['answer'] as $qak => $qav){?>
+                <?  $count = 0;
+                    foreach ($questionnaire[$k]['question'][$qk]['answer'] as $qak => $qav){
+                ?>
             
-            <li><?=$qav['description']?></li>
-            
-            <?}?>
+                <li><?=$qav['description']?> - <?=$qav['quant']?></li>
+                <?
+                        $data_chart[$qak]['description'] = $qav['description'];
+                        $data_chart[$qak]['quant'] = $qav['quant'];
+                    }
+                    
+                    $count2 = 1;
+                    $array_total = count($data_chart);
+                    
+                    if($array_total > 0){
+                        if($qv['grafico'] == 'pizza'){
+                ?>
+                
+                <li>
+                    <!--     grafico de pizza               -->
+                    <script type="text/javascript">
+                        google.load("visualization", "1", {packages:["corechart"]});
+                        google.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Respostas', 'Total'],
+                                <? foreach($data_chart as $ck => $cv){ ?>
+                                ['<?=$cv['description']?>',      <?=$cv['quant']?>]<? if($count2 < $array_total) { ?> , <?php } $count2++;?>
+                                <? } ?>
+                            ]);
+                        
+                        var options = {
+                          title: '<?=$qv['palavra_chave']?>'
+                        };
+                        
+                        var chart = new google.visualization.PieChart(document.getElementById('question_<?=$qv['id_question']?>'));
+                        chart.draw(data, options);
+                        }
+                    </script>
+                   <div id="question_<?=$qv['id_question']?>"></div>
+                </li>
+                
+                <?
+                    // else tipo de grafico
+                    }else{
+                ?>
+                <li>
+                    <!--     grafico de barra               -->
+                    <img src="http://chart.apis.google.com/chart?chxr=0,0,100&chxt=x&chbh=a&chs=300x225&cht=bhg&chco=FF9900,FF0000,0000FF&chds=10,100,0,100,0,100&chd=t:<? foreach($data_chart as $ck => $cv){ echo $cv['quant']; if($count2 < $array_total) { ?> |  <?php } $count2++; } ?>&chdl=<? $count3 = 1; foreach($data_chart as $ck => $cv){ echo $cv['description']; if($count3 < $array_total) { ?> |  <?php } $count3++; } ?>" width="300" height="225" alt="Gráficos"/>
+                    
+                </li>
+                <?
+                    //else quantidade no array
+                    }}else{
+                ?>
+                <li><div id="teste"><p>Não Há dados para apresentar gráfico</p></div></li>
+                <? } ?>
             </ul>
+            
+            
             <br>
             
-            <!--  lembrar fazer o grafico para cada questão!!          -->
-            
-            <?}?>
+            <? } ?>
         </div>
-        <?}}?>
+        <? } } ?>
     </div>
     
     
 </div>
+
+<?//printr($data_chart);?>
