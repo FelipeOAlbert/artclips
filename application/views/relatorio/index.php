@@ -229,7 +229,7 @@
                 ?>
                 <li class="respostas">
                     <!--     grafico de barra               -->
-                    <img style="margin: auto !important;" src="http://chart.apis.google.com/chart?chxr=0,0,100&chxt=x&chbh=a&chs=400x200&cht=bhg&chco=FF9900,FF0000,0000FF&chds=10,100,0,100,0,100&chd=t:<? foreach($data_chart as $ck => $cv){ echo $cv['quant']; if($count2 < $array_total) { ?> |  <?php } $count2++; } ?>&chdl=<? $count3 = 1; foreach($data_chart as $ck => $cv){ echo $cv['description']; if($count3 < $array_total) { ?> |  <?php } $count3++; } ?>" alt="Gráficos"/>
+                    <img style="margin: auto !important;" src="http://chart.apis.google.com/chart?chxr=0,0,<?=$array_total+20?>&chxt=x&chbh=a&chs=400x200&cht=bhg&chco=FF9900,FF0000,0000FF&chds=0,<?=$array_total+20?>,0,<?=$array_total+20?>,0,<?=$array_total+20?>&chd=t:<? foreach($data_chart as $ck => $cv){ echo  str_replace(' ', '', $cv['quant']); if($count2 < $array_total) { ?>|<?php } $count2++; } ?>&chdl=<? $count3 = 1; foreach($data_chart as $ck => $cv){ echo  str_replace(' ', '', $cv['description']); if($count3 < $array_total) { ?>|<?php } $count3++; } ?>" alt="Gráficos"/>
                     
                 </li>
                 <?
