@@ -7,7 +7,8 @@
 
 <div>
     <h1>Relat&oacuterios - <?=$event[0]['name']?></h1>
-    
+    <br>
+    <br>
     <div id="abas">
         <ul>
             <li><a href="#informacoes-visitantes">Visitantes</a></li>
@@ -40,8 +41,9 @@
             </script>
             
             <h1>Quantidade de visitantes</h1>
-            
-            <table border="2px" width="800px">
+            <br>
+            <br>
+            <table class="table" width="800px">
                 <tr>
                     <td width="25%">Homens</td>
                     <td width="25%"><?=$users['quant_man']?></td>
@@ -63,10 +65,14 @@
                     <td width="25%"><?=$users['perc_woman']?>%</td>
                 </tr>
             </table>
-            
-            <div id="chart_man_woman" style="width: 400px; height: 200px;"></div>
-            
-            <h1>Faixa etária</h1>
+            <br>
+            <br>
+            <div id="chart_man_woman" class="charts"></div>
+            <br>
+            <br>
+            <h1>Faixa etária</h1>        
+            <br>
+            <br>
             
             <script type="text/javascript">
                 google.load("visualization", "1", {packages:["corechart"]});
@@ -90,7 +96,7 @@
                 }
             </script>
             
-            <table border="2px" width="800px">
+            <table class="table">
                 
                 <tr>
                     <td width="25%">Entre 18 à 25 anos</td>
@@ -148,8 +154,9 @@
                 </tr>
                 
             </table>
-            
-            <div id="chart_years" style="width: 400px; height: 200px;"></div>
+            <br>
+            <br>
+            <div id="chart_years" class="charts"></div>
             
             <?}else{?>
             <p>Não há dados para aprensentar!</p>
@@ -168,15 +175,18 @@
             ?>
             
             <p>Questão:</p>
-            <strong><p><?=$qv['description']?></p></strong>
+            <br>
+            <strong><?=$qv['description']?></strong>
+            <br>
+            <br>
             <p>Respostas:</p>
-            
+            <br>
             <ul>
                 <?  $count = 0;
                     foreach ($questionnaire[$k]['question'][$qk]['answer'] as $qak => $qav){
                 ?>
             
-                <li><?=$qav['description']?> - <?=$qav['quant']?></li>
+                <li class="respostas"><?=$qav['description']?> - <?=$qav['quant']?></li>
                 <?
                         $data_chart[$qak]['description'] = $qav['description'];
                         $data_chart[$qak]['quant'] = $qav['quant'];
@@ -189,7 +199,7 @@
                         if($qv['grafico'] == 'pizza'){
                 ?>
                 
-                <li>
+                <li class="respostas">
                     <!--     grafico de pizza               -->
                     <script type="text/javascript">
                         google.load("visualization", "1", {packages:["corechart"]});
@@ -210,23 +220,23 @@
                         chart.draw(data, options);
                         }
                     </script>
-                   <div id="question_<?=$qv['id_question']?>"></div>
+                   <div class="charts" id="question_<?=$qv['id_question']?>"></div>
                 </li>
                 
                 <?
                     // else tipo de grafico
                     }else{
                 ?>
-                <li>
+                <li class="respostas">
                     <!--     grafico de barra               -->
-                    <img src="http://chart.apis.google.com/chart?chxr=0,0,100&chxt=x&chbh=a&chs=300x225&cht=bhg&chco=FF9900,FF0000,0000FF&chds=10,100,0,100,0,100&chd=t:<? foreach($data_chart as $ck => $cv){ echo $cv['quant']; if($count2 < $array_total) { ?> |  <?php } $count2++; } ?>&chdl=<? $count3 = 1; foreach($data_chart as $ck => $cv){ echo $cv['description']; if($count3 < $array_total) { ?> |  <?php } $count3++; } ?>" width="300" height="225" alt="Gráficos"/>
+                    <img style="margin: auto !important;" src="http://chart.apis.google.com/chart?chxr=0,0,100&chxt=x&chbh=a&chs=400x200&cht=bhg&chco=FF9900,FF0000,0000FF&chds=10,100,0,100,0,100&chd=t:<? foreach($data_chart as $ck => $cv){ echo $cv['quant']; if($count2 < $array_total) { ?> |  <?php } $count2++; } ?>&chdl=<? $count3 = 1; foreach($data_chart as $ck => $cv){ echo $cv['description']; if($count3 < $array_total) { ?> |  <?php } $count3++; } ?>" alt="Gráficos"/>
                     
                 </li>
                 <?
                     //else quantidade no array
                     }}else{
                 ?>
-                <li><div id="teste"><p>Não Há dados para apresentar gráfico</p></div></li>
+                <li class="respostas"><div class="charts" id="teste"><p>Não Há dados para apresentar gráfico</p></div></li>
                 <? } ?>
             </ul>
             

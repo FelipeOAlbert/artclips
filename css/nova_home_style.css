@@ -7,7 +7,12 @@
 		background-color: #FFF;
 	}
 	
-	ul	{list-style: square inside;}
+	ul	{
+	
+	list-style: square inside;
+	
+	
+	}
 	ol	{list-style: decimal inside;}
 	a	{outline: none; text-decoration: none;}
 	a img	{border: none;}
@@ -434,3 +439,19 @@ form {
 
 
 /* inicio estilo relatórios*/
+
+.table {
+	text-align: center;
+}
+
+.charts, .charts img {
+	width: 400px;
+	height: 200px;
+	margin: auto !important;
+}
+
+.respostas {
+	list-style: none;
+	padding:3px 5px;
+	margin-bottom:2px;
+}
