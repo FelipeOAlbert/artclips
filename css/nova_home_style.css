@@ -20,7 +20,7 @@
 	table	{border-collapse: collapse;}
 	
 	/* typo reset */
-	h1, h2, h3, h4, h5, h6, p, strong {
+	h1, h2, h3, h4, h5, h6, p, strong, legend {
 		color: #615d5c;
 	}
 	
@@ -28,6 +28,7 @@
 	h2 {margin: 4px;}
 	h4 {margin: 20px;}
 	p, a, strong, table {font-size: 1.4em;}
+	
 	a {color: #615d5c;}
 	a:hover {text-decoration: underline;}
 
@@ -454,4 +455,32 @@ form {
 	list-style: none;
 	padding:3px 5px;
 	margin-bottom:2px;
+}
+
+.bradcrumb, .filtro {
+	/*fieldset{*/
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+}
+
+.bradcrumb legend, .filtro legend {
+	font-size: 16px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.bradcrumb p, .filtro p {
+	margin-left: 15px;
+	
+}
+
+.filtro ul {
+	list-style: none;
+}
+
+.filtro input, .filtro select {
+	margin-left: 15px;
+	margin-bottom: 5px;
 }

@@ -187,4 +187,20 @@ if ( ! function_exists('born_date') )
 	}
 }
 
+if ( ! function_exists('data_select') )
+{
+	function data_select($selected, $rows)
+	{
+		foreach($rows as $row){
+			if($row['id_event'] == $selected){
+				print('<option value="'.$row['id_event'].'" selected="selected">'.$row['name'].'</option>');
+			} else {
+				print('<option value="'.$row['id_event'].'">'.$row['name'].'</option>');
+			}
+		}
+		
+		return true;
+	}
+}
+
 ?>

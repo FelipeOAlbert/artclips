@@ -28,8 +28,6 @@ class Relatorio extends CI_Controller
 		//dados dos questionarios desse evento
 		$data['questionnaire'] = $this->report->getQuestionnaireByEventId(4);
 		
-		//printr($data);
-		
 		if($data['questionnaire']){
 			foreach($data['questionnaire'] as $k => $v){
 				
@@ -47,13 +45,71 @@ class Relatorio extends CI_Controller
 			}
 		}
 		
-		//printr($data);
-		
 		$this->template->show('relatorio/index', $data);
 		
 	}
 	
-	
+	public final function filter()
+	{
+		if($_POST){
+			
+			$filters 	= array();
+			//$bradcrumb 	= array();
+			
+			$filters['start_date'] 	= date_BR_to_EUA($_POST['start_date']);
+			$filters['end_date'] 	= date_BR_to_EUA($_POST['end_date']);
+			$filters['event_id'] 	= $_POST['event_id'];
+			
+			$data['users'] = $this->report->get_users($filters);
+			$data['event'] = $this->report->getEventById($filters['event_id']);
+			
+			//Montando Bradcrumb
+			$data['bradcrumb']['event'] = 'Evento Selecionado > '. $data['event'][0]['name'];
+			
+			if(isset($_POST['start_date'])){
+				$data['bradcrumb']['start_date'] = 'Início Pedíodo > '.$_POST['start_date'];
+			}
+			
+			if(isset($_POST['end_date'])){
+				$data['bradcrumb']['end_date'] = 'Fim Pedíodo > '.$_POST['end_date'];
+			}
+			
+			//printr($bradcrumb);
+			
+			//dados dos questionarios desse evento
+			$data['questionnaire'] = $this->report->getQuestionnaireByEventId($filters['event_id']);
+			
+			if($data['questionnaire']){
+				foreach($data['questionnaire'] as $k => $v){
+					
+					//pegando as questoes do questionario
+					$data['questionnaire'][$k]['question'] = $this->report->getQuestionByQuestionnaire($v['id_questionnaire']);
+					
+					//pegando as respostas das questoes
+					foreach($data['questionnaire'][$k]['question'] as $qqk => $qqv){
+						$data['questionnaire'][$k]['question'][$qqk]['answer'] = $this->report->getAnswerByQuestion($qqv['id_question']);
+						
+						foreach($data['questionnaire'][$k]['question'][$qqk]['answer'] as $qqvak => $qqvav){
+							$data['questionnaire'][$k]['question'][$qqk]['answer'][$qqvak]['quant'] = $this->report->getAnswerRespondentByAnswer($qqvav['id_answer'], $filters);
+						}
+					}
+				}
+			}
+			
+			$data['show_data'] = true;
+			
+			//printr($data);
+			
+			$this->template->show('relatorio/filter', $data);
+		}else{
+			$data = array();
+			
+			$data['event'] = $this->report->getAllEvent();
+			$data['show_data'] = false;
+			
+			$this->template->show('relatorio/filter', $data);
+		}
+	}
 	
 	//private function resposta_unica()
 	//{

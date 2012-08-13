@@ -26,6 +26,7 @@
 	<?= js('form.js');?>
 	<?= js('funcoes.js');?>
 	<?= js('functions.js');?>
+	<?= js('funcoes_relatorio.js');?>
 	<?= js('jquery.wz_jsgraphics.js');?>
 	<?= js('arrowsandboxes.js');?>
 	<?= js('tiny_mce/jquery.tinymce.js');?>
@@ -54,7 +55,10 @@
 					<a href="#" title="Titulo do link Menu">Eventos</a>
 				</li>
 				<li>
-					<a href="index.php/relatorio/index/" title="Titulo do link Menu">Relatórios</a>
+					<a href="index.php/relatorio/index/" title="Titulo do link Menu">Relatórios Fixos</a>
+				</li>
+				<li>
+					<a href="index.php/relatorio/filter/" title="Titulo do link Menu">Relatórios Com Filtros</a>
 				</li>
 				<li>
 					<a href="#" title="Titulo do link Menu">Mapas</a>

@@ -1,4 +1,33 @@
+<? 
+    if($show_data){
+?>
+
 <div>
+    <div>
+        <fieldset class="bradcrumb">
+            <legend>Filtro Selecionado</legend>
+            
+            <?if(isset($bradcrumb['event'])) { ?>
+            <p><?=$bradcrumb['event']?></p>
+            <br>
+            <? } ?>
+            
+            <?if(isset($bradcrumb['start_date'])) { ?>
+            <p><?=$bradcrumb['start_date']?></p>
+            <br>
+            <? } ?>
+            
+            <?if(isset($bradcrumb['end_date'])) { ?>
+            <p><?=$bradcrumb['end_date']?></p>
+            <br>
+            <? } ?>
+            
+           <input type="button" id="limpaBusca" class="button" value="Limpar Busca" />
+           <br>
+            
+        </fieldset>
+    </div>
+    <br>
     <h1>Relat&oacuterios - <?=$event[0]['name']?></h1>
     <br>
     <br>
@@ -241,4 +270,39 @@
         <? } } ?>
     </div>
     
+    
 </div>
+
+<? }else{ ?>
+<div>
+    <div class="input">
+        <form name="filters" id="filter_validate" method="post" accept-charset="utf-8">
+            <fieldset class="filtro">
+                <legend>Selecione um filtro para gerar o relatório</legend>
+                <ul>
+                    <li>
+                        <p>Selecione o evento</p>
+                        <select name="event_id" id="event_id">
+                            <option value="0" selected="selected">Selecione...</option>
+                            <?data_select(0, $event)?>
+                        </select>
+                    </li>
+                    <li>
+                        <p>Início do Período</p>
+                        <input type="text" id="start_date" class="datepicker" name="start_date"  /><br>
+                    </li>
+                    <li>
+                        <p>Fim do Período</p>
+                        <input type="text" id="end_date" class="datepicker" name="end_date" />
+                    </li>
+                    <li>
+                        <input type="submit" class="button" value="Filtrar" />
+                    </li>
+                </ul>
+            </fieldset>
+            
+        </form>
+    </div>
+    
+</div>
+<? } ?>

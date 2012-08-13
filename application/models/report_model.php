@@ -10,7 +10,7 @@ class Report_model extends CI_Model {
 	}
     
     // funcao para pegar todos os usuários cadastrados
-    public final function get_users()
+    public final function get_users($xPost = array())
     {
         //Setando....
         $man    		= 0;
@@ -23,14 +23,29 @@ class Report_model extends CI_Model {
         $age_41_50 		= 0;
         $age_51_plus 	= 0;        
         
-        
+		
+		//Montando o where
+        $where = array('user_profile.id_profile' => 2);
+		if($xPost){
+			if(isset($xPost['start_date'])){
+				$where['creation_date >='] = $xPost['start_date'];
+			}
+			if(isset($xPost['end_date'])){
+				$where['creation_date <='] = $xPost['end_date'];
+			}
+		}
+		
+		//printr($where);
+		
         $this->db->select('user.name, user_detail.gender, user_detail.birth_date, user_profile.id_profile');
         $this->db->from('user');
         $this->db->join('user_detail', 'user_detail.id_user = user.id_user');
         $this->db->join('user_profile', 'user_profile.id_user = user.id_user');
-        $this->db->where(array('user_profile.id_profile' => 2));
+        $this->db->where($where);
         $query = $this->db->get();
         
+		//echo $this->db->last_query();
+		
         if($query->num_rows > 0){
             
             $total = $query->num_rows;
@@ -103,9 +118,20 @@ class Report_model extends CI_Model {
         return false;
     }
     
+	public final function getAllEvent()
+	{
+		$query = $this->db->get_where('event', array('active' => 1));
+		
+		if($query->num_rows > 0){
+			return $query->result_array();
+		}
+		
+		return false;
+	}
+	
 	public final function getEventById($id = 0)
 	{
-		$query = $this->db->get_where('event', array('id_event' => $id));
+		$query = $this->db->get_where('event', array('id_event' => $id, 'active' => 1));
 		
 		if($query->num_rows > 0){
 			return $query->result_array();
@@ -147,9 +173,20 @@ class Report_model extends CI_Model {
 		return false;
 	}
 	
-	public final function getAnswerRespondentByAnswer($id = 0)
+	public final function getAnswerRespondentByAnswer($id = 0, $xPost = array())
 	{
-		$query = $this->db->get_where('answer_respondent', array('answer_id' => $id));
+		$where = array('answer_id' => $id);
+		
+		if($xPost){
+			if(isset($xPost['start_date'])){
+				$where['created >='] = $xPost['start_date'];
+			}
+			if(isset($xPost['end_date'])){
+				$where['created <='] = $xPost['end_date'];
+			}
+		}
+		
+		$query = $this->db->get_where('answer_respondent', $where);
 		
 		if($query->num_rows > 0){
 			return $query->num_rows;
